@@ -243,8 +243,8 @@ const Index = () => {
                 }`}
                 style={{
                   boxShadow: p.best
-                    ? '8px 8px 0 0 #0a0820, 14px 14px 0 0 hsl(var(--primary))'
-                    : '6px 6px 0 0 #0a0820',
+                    ? '8px 8px 0 0 #05070d, 14px 14px 0 0 hsl(var(--primary))'
+                    : '6px 6px 0 0 #05070d',
                 }}
               >
                 {p.best && (
@@ -272,7 +272,7 @@ const Index = () => {
                     p.best ? 'bg-primary text-primary-foreground pixel-shadow-cyan' : p.btn
                   }`}
                   style={
-                    !p.best ? { boxShadow: '6px 6px 0 0 #0a0820' } : undefined
+                    !p.best ? { boxShadow: '6px 6px 0 0 #05070d' } : undefined
                   }
                 >
                   {p.cta}
@@ -352,7 +352,7 @@ const Index = () => {
           <button
             onClick={() => scrollTo('pricing')}
             className="font-pixel text-sm bg-background text-secondary px-8 py-5 border-4 border-background hover:bg-secondary hover:text-background transition-all"
-            style={{ boxShadow: '8px 8px 0 0 #0a0820' }}
+            style={{ boxShadow: '8px 8px 0 0 #05070d' }}
           >
             PRESS START ▶
           </button>
