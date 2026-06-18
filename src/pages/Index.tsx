@@ -25,12 +25,12 @@ const PLANS = [
   {
     name: 'СТАРТ',
     price: '0',
-    period: 'навсегда',
+    period: '7 дней',
     accent: 'text-secondary',
     btn: 'bg-secondary text-background',
     check: 'text-secondary',
-    features: ['1 устройство', '3 сервера', 'Скорость 10 Мбит/с', 'Без логов'],
-    cta: 'НАЧАТЬ',
+    features: ['1 устройство', '3 сервера', 'Полная скорость', 'Без логов', 'Пробный период'],
+    cta: 'ПОПРОБОВАТЬ',
   },
   {
     name: 'ГЕРОЙ',
@@ -41,7 +41,7 @@ const PLANS = [
     check: 'text-primary',
     best: true,
     features: ['5 устройств', 'Все 60+ серверов', 'Без лимита скорости', 'Без логов', 'Поддержка 24/7'],
-    cta: 'ВЫБРАТЬ',
+    cta: 'ПОПРОБОВАТЬ',
   },
   {
     name: 'БОСС',
@@ -51,7 +51,7 @@ const PLANS = [
     btn: 'bg-accent text-accent-foreground',
     check: 'text-accent',
     features: ['10 устройств', 'Все серверы', 'Макс. скорость', 'Приоритет', '*при оплате за год'],
-    cta: 'КУПИТЬ',
+    cta: 'ПОПРОБОВАТЬ',
   },
 ];
 
@@ -160,7 +160,7 @@ const Index = () => {
                 onClick={() => scrollTo('pricing')}
                 className="font-pixel text-xs bg-primary text-primary-foreground px-6 py-4 pixel-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
               >
-                ИГРАТЬ ▶
+                НАЧАТЬ БЕСПЛАТНО
               </button>
               <button
                 onClick={() => scrollTo('security')}
@@ -170,7 +170,7 @@ const Index = () => {
               </button>
             </div>
             <div className="font-pixel text-[10px] text-muted-foreground flex items-center gap-2">
-              <span className="text-secondary animate-blink">●</span> 1 042 384 игрока онлайн
+              <span className="text-secondary animate-blink">●</span> Серверы работают · без логов
             </div>
           </div>
 
@@ -249,15 +249,22 @@ const Index = () => {
               >
                 {p.best && (
                   <span className="absolute -top-4 left-1/2 -translate-x-1/2 font-pixel text-[8px] bg-accent text-accent-foreground px-3 py-2 whitespace-nowrap">
-                    ★ ВЫБОР ИГРОКОВ ★
+                    ★ ПОПУЛЯРНЫЙ ВЫБОР ★
                   </span>
                 )}
                 <h3 className={`font-pixel text-lg ${p.accent} mb-4`}>{p.name}</h3>
                 <div className="flex items-end gap-1 mb-6">
-                  <span className="font-pixel text-3xl">{p.price}</span>
-                  <span className="font-mono-pixel text-xl text-muted-foreground mb-1">
-                    ₽ {p.period}
-                  </span>
+                  {p.price === '0' ? (
+                    <div>
+                      <span className="font-pixel text-2xl text-secondary">БЕСПЛАТНО</span>
+                      <div className="font-mono-pixel text-lg text-muted-foreground mt-1">Пробный · 7 дней</div>
+                    </div>
+                  ) : (
+                    <>
+                      <span className="font-pixel text-3xl">{p.price} ₽</span>
+                      <span className="font-mono-pixel text-xl text-muted-foreground mb-1">{p.period}</span>
+                    </>
+                  )}
                 </div>
                 <ul className="space-y-3 mb-8 flex-1">
                   {p.features.map((f) => (
@@ -354,7 +361,7 @@ const Index = () => {
             className="font-pixel text-sm bg-background text-secondary px-8 py-5 border-4 border-background hover:bg-secondary hover:text-background transition-all"
             style={{ boxShadow: '8px 8px 0 0 #05070d' }}
           >
-            PRESS START ▶
+            ПОПРОБОВАТЬ БЕСПЛАТНО
           </button>
         </div>
       </section>
