@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 
 const HERO_IMG =
@@ -98,6 +99,7 @@ const FAQ = [
 ];
 
 const Index = () => {
+  const navigate = useNavigate();
   const [activeNav, setActiveNav] = useState('home');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
@@ -131,12 +133,20 @@ const Index = () => {
               </li>
             ))}
           </ul>
-          <button
-            onClick={() => scrollTo('pricing')}
-            className="font-pixel text-[10px] bg-primary text-primary-foreground px-4 py-3 pixel-shadow-cyan hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
-          >
-            СТАРТ
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => navigate('/login')}
+              className="font-pixel text-[10px] text-muted-foreground border-2 border-muted px-4 py-3 hover:border-secondary hover:text-secondary transition-all"
+            >
+              ВОЙТИ
+            </button>
+            <button
+              onClick={() => scrollTo('pricing')}
+              className="font-pixel text-[10px] bg-primary text-primary-foreground px-4 py-3 pixel-shadow-cyan hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
+            >
+              ПОПРОБОВАТЬ
+            </button>
+          </div>
         </nav>
       </header>
 
