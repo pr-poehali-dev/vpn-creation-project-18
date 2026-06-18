@@ -72,7 +72,7 @@ export default {
 			fontFamily: {
 				pixel: ['"Press Start 2P"', 'monospace'],
 				mono: ['VT323', 'monospace'],
-				sans: ['Rubik', 'sans-serif']
+				sans: ['"Golos Text"', 'Rubik', 'sans-serif']
 			},
 			keyframes: {
 				'accordion-down': {

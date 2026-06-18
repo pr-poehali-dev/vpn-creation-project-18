@@ -4,35 +4,35 @@
 
 @layer base {
   :root {
-    --background: 220 30% 6%;
-    --foreground: 210 20% 92%;
+    --background: 222 20% 7%;
+    --foreground: 210 15% 93%;
 
-    --card: 220 25% 11%;
-    --card-foreground: 210 20% 92%;
+    --card: 224 18% 11%;
+    --card-foreground: 210 15% 93%;
 
-    --popover: 220 25% 11%;
-    --popover-foreground: 210 20% 92%;
+    --popover: 224 18% 11%;
+    --popover-foreground: 210 15% 93%;
 
-    --primary: 215 75% 55%;
-    --primary-foreground: 220 30% 6%;
+    --primary: 207 90% 54%;
+    --primary-foreground: 222 20% 7%;
 
-    --secondary: 210 30% 65%;
-    --secondary-foreground: 220 30% 6%;
+    --secondary: 224 18% 18%;
+    --secondary-foreground: 210 15% 93%;
 
-    --muted: 220 18% 20%;
-    --muted-foreground: 215 15% 60%;
+    --muted: 224 15% 16%;
+    --muted-foreground: 215 12% 55%;
 
-    --accent: 0 0% 96%;
-    --accent-foreground: 220 30% 6%;
+    --accent: 158 64% 52%;
+    --accent-foreground: 222 20% 7%;
 
-    --destructive: 0 70% 55%;
+    --destructive: 0 72% 58%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 60% 45%;
-    --input: 220 18% 22%;
-    --ring: 215 75% 55%;
+    --border: 224 15% 18%;
+    --input: 224 15% 16%;
+    --ring: 207 90% 54%;
 
-    --radius: 0rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -97,23 +97,32 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Rubik", sans-serif;
-    background-image:
-      linear-gradient(rgba(120, 150, 200, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(120, 150, 200, 0.04) 1px, transparent 1px);
-    background-size: 32px 32px;
+    font-family: "Golos Text", "Rubik", sans-serif;
   }
 }
 
 @layer utilities {
-  .font-pixel {
-    font-family: "Press Start 2P", monospace;
+  .card-hover {
+    @apply transition-all duration-200 hover:border-primary/40 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/10;
   }
-  .font-mono-pixel {
-    font-family: "VT323", monospace;
+  .badge-category {
+    @apply text-xs font-semibold px-2.5 py-1 rounded-full;
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-up {
+    animation: fade-up 0.4s ease both;
   }
 
-  /* Пиксельная рамка-обводка */
+  /* legacy pixel classes kept for VPN pages */
   .pixel-border {
     box-shadow:
       0 -4px 0 0 #0a0820,
