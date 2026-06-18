@@ -7,6 +7,7 @@ export default {
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
+			"./1781778373076222553.html"
 	],
 	prefix: "",
 	theme: {
@@ -67,6 +68,11 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			fontFamily: {
+				pixel: ['"Press Start 2P"', 'monospace'],
+				mono: ['VT323', 'monospace'],
+				sans: ['Rubik', 'sans-serif']
 			},
 			keyframes: {
 				'accordion-down': {
