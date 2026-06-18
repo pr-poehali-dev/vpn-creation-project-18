@@ -155,15 +155,15 @@ const Index = () => {
         <div className="container mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="inline-block font-mono-pixel text-2xl text-accent bg-muted px-3 py-1">
-              ★ LEVEL UP YOUR PRIVACY ★
+              ★ БЕЗОПАСНОСТЬ · СКОРОСТЬ · ПРИВАТНОСТЬ ★
             </div>
             <h1 className="font-pixel text-2xl md:text-4xl leading-relaxed text-glow-pink text-primary">
-              ЗАЩИТА<br />
-              <span className="text-secondary text-glow-cyan">В СТИЛЕ</span><br />
-              16 БИТ
+              ТВОЙ<br />
+              <span className="text-secondary text-glow-cyan">ЛИЧНЫЙ</span><br />
+              VPN
             </h1>
             <p className="font-mono-pixel text-2xl text-foreground/80 max-w-md">
-              Спрячь свой интернет за пиксельным щитом. Никаких логов, никаких глаз — только ты и сеть.
+              Быстрое и надёжное соединение. Никаких логов, никаких ограничений — работает на всех устройствах.
             </p>
             <div className="flex flex-wrap gap-4">
               <button
@@ -361,10 +361,10 @@ const Index = () => {
       <section className="py-20 bg-primary scanlines">
         <div className="container mx-auto px-4 text-center space-y-8">
           <h2 className="font-pixel text-xl md:text-2xl text-primary-foreground leading-relaxed">
-            ГОТОВ НАЖАТЬ START?
+            НАЧНИ ПРЯМО СЕЙЧАС
           </h2>
           <p className="font-mono-pixel text-2xl text-primary-foreground/90 max-w-md mx-auto">
-            Подключайся за 30 секунд. Первый уровень — бесплатно.
+            7 дней бесплатно. Без привязки карты. Отмена в любой момент.
           </p>
           <button
             onClick={() => scrollTo('pricing')}

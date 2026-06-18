@@ -2,8 +2,37 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 
+const PLANS = [
+  {
+    name: 'СТАРТ',
+    price: 'Бесплатно',
+    period: '7 дней',
+    accent: 'text-secondary',
+    border: 'border-muted hover:border-secondary',
+    features: ['1 устройство', '3 сервера', 'Полная скорость', 'Без логов'],
+  },
+  {
+    name: 'ГЕРОЙ',
+    price: '249 ₽',
+    period: '/месяц',
+    best: true,
+    accent: 'text-primary',
+    border: 'border-primary',
+    features: ['5 устройств', 'Все 60+ серверов', 'Без лимита скорости', 'Поддержка 24/7'],
+  },
+  {
+    name: 'БОСС',
+    price: '149 ₽',
+    period: '/мес · при оплате за год',
+    accent: 'text-accent',
+    border: 'border-muted hover:border-accent',
+    features: ['10 устройств', 'Все серверы', 'Макс. скорость', 'Приоритет'],
+  },
+];
+
 const Auth = () => {
   const navigate = useNavigate();
+  const [step, setStep] = useState<'auth' | 'plan'>('auth');
   const [mode, setMode] = useState<'login' | 'register'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,9 +49,85 @@ const Auth = () => {
     setTimeout(() => {
       localStorage.setItem('vpn_user', JSON.stringify({ email, name: name || email.split('@')[0] }));
       setLoading(false);
-      navigate('/app');
+      if (mode === 'register') {
+        setStep('plan');
+      } else {
+        navigate('/app');
+      }
     }, 1200);
   };
+
+  const choosePlan = (planName: string) => {
+    const stored = localStorage.getItem('vpn_user');
+    if (stored) {
+      const u = JSON.parse(stored);
+      localStorage.setItem('vpn_user', JSON.stringify({ ...u, plan: planName }));
+    }
+    navigate('/app');
+  };
+
+  if (step === 'plan') {
+    return (
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4 py-12"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(120,150,200,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(120,150,200,0.04) 1px,transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+      >
+        <div className="w-full max-w-3xl">
+          <div className="text-center mb-10">
+            <div className="font-pixel text-secondary text-lg mb-3">
+              <span className="text-primary">▶</span> PIXEL VPN
+            </div>
+            <h2 className="font-pixel text-lg text-foreground mb-3">ВЫБЕРИТЕ ТАРИФ</h2>
+            <p className="font-mono-pixel text-xl text-muted-foreground">
+              Начните с бесплатного — перейдите на платный в любой момент
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-5">
+            {PLANS.map((p) => (
+              <div
+                key={p.name}
+                className={`relative bg-card border-4 p-6 flex flex-col transition-colors ${p.border}`}
+                style={{ boxShadow: p.best ? '6px 6px 0 0 #05070d' : '4px 4px 0 0 #05070d' }}
+              >
+                {p.best && (
+                  <span className="absolute -top-4 left-1/2 -translate-x-1/2 font-pixel text-[8px] bg-primary text-primary-foreground px-3 py-2 whitespace-nowrap">
+                    ★ ПОПУЛЯРНЫЙ ★
+                  </span>
+                )}
+                <h3 className={`font-pixel text-sm ${p.accent} mb-3`}>{p.name}</h3>
+                <div className="mb-4">
+                  <span className="font-pixel text-xl text-foreground">{p.price}</span>
+                  <span className="font-mono-pixel text-lg text-muted-foreground ml-1">{p.period}</span>
+                </div>
+                <ul className="space-y-2 mb-6 flex-1">
+                  {p.features.map((f) => (
+                    <li key={f} className="flex items-center gap-2 font-mono-pixel text-lg">
+                      <Icon name="Check" size={15} className={p.accent} />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  onClick={() => choosePlan(p.name)}
+                  className={`font-pixel text-[10px] py-3 transition-all hover:brightness-110 ${p.best ? 'bg-primary text-primary-foreground' : 'bg-muted text-foreground hover:bg-secondary hover:text-background'}`}
+                  style={{ boxShadow: '3px 3px 0 0 #05070d' }}
+                >
+                  ВЫБРАТЬ
+                </button>
+              </div>
+            ))}
+          </div>
+
+          <p className="font-mono-pixel text-lg text-center text-muted-foreground mt-8">
+            Без привязки карты · Отмена в любой момент
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4"
@@ -113,7 +218,7 @@ const Auth = () => {
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
                   <Icon name="Loader" size={14} className="animate-spin" />
-                  ПОДКЛЮЧЕНИЕ...
+                  {mode === 'login' ? 'ВХОДИМ...' : 'СОЗДАЁМ АККАУНТ...'}
                 </span>
               ) : mode === 'login' ? 'ВОЙТИ' : 'СОЗДАТЬ АККАУНТ'}
             </button>
